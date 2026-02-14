@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VEX Skills Board | Nickson Chen</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Space+Grotesk:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/skills.css" />
+  </head>
+  <body class="skills-page">
+    <div class="cursor-glow" aria-hidden="true"></div>
+    <div class="bg-grid" aria-hidden="true"></div>
+    <div class="bg-orbs" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="logo" href="index.html">NC</a>
+        <nav class="site-nav" aria-label="Skills Navigation">
+          <a href="#filters">Filters</a>
+          <a href="#board">Board</a>
+          <a href="scouting.html">Scout Console</a>
+        </nav>
+        <a class="nav-cta nav-login" href="index.html">Back to site</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="filters">
+        <div class="container skills-hero">
+          <div class="hero-copy" data-parallax="0.11">
+            <p class="eyebrow">VEX Robotics</p>
+            <h1>Global Skills Board</h1>
+            <p class="lead">
+              Browse broad skills runs with clean filtering by program and season.
+              Useful for comparing teams beyond individual event rankings.
+            </p>
+            <div class="hero-actions">
+              <a class="btn primary" href="#board">View board</a>
+              <a class="btn ghost" href="scouting.html">Open scout console</a>
+            </div>
+          </div>
+
+          <div class="hero-panel skills-filter-panel" data-parallax="0.16">
+            <div class="panel-header">
+              <span class="panel-title">Skills filters</span>
+              <span class="panel-dot"></span>
+            </div>
+            <form id="skills-form" class="skills-form" autocomplete="off">
+              <div class="controls-grid">
+                <label class="field" for="skills-program">
+                  <span>Program</span>
+                  <select id="skills-program">
+                    <option value="1">V5RC</option>
+                    <option value="41">VIQRC</option>
+                    <option value="4">VURC</option>
+                    <option value="">All programs</option>
+                  </select>
+                </label>
+                <label class="field" for="skills-season">
+                  <span>Season</span>
+                  <select id="skills-season">
+                    <option value="">All seasons</option>
+                  </select>
+                </label>
+              </div>
+
+              <div class="controls-grid">
+                <label class="field" for="skills-team-search">
+                  <span>Team filter</span>
+                  <input id="skills-team-search" type="text" placeholder="Optional team number search" />
+                </label>
+                <label class="field" for="skills-per-page">
+                  <span>Rows per page</span>
+                  <select id="skills-per-page">
+                    <option value="25">25</option>
+                    <option value="50" selected>50</option>
+                    <option value="100">100</option>
+                  </select>
+                </label>
+              </div>
+
+              <div class="utility-actions">
+                <button class="btn primary" type="submit">Load skills</button>
+                <button class="btn ghost" id="skills-refresh" type="button">Refresh</button>
+              </div>
+              <p class="status" id="skills-status" role="status"></p>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="board">
+        <div class="container">
+          <div class="kpi-grid">
+            <article class="card kpi-card">
+              <h3>Rows loaded</h3>
+              <p class="kpi-value" id="skills-kpi-rows">0</p>
+            </article>
+            <article class="card kpi-card">
+              <h3>Best score</h3>
+              <p class="kpi-value" id="skills-kpi-best">-</p>
+            </article>
+            <article class="card kpi-card">
+              <h3>Top rank</h3>
+              <p class="kpi-value" id="skills-kpi-rank">-</p>
+            </article>
+            <article class="card kpi-card">
+              <h3>Total entries</h3>
+              <p class="kpi-value" id="skills-kpi-total">-</p>
+            </article>
+          </div>
+
+          <article class="utility-card">
+            <div class="utility-head split-head">
+              <div>
+                <h3>Skills Ranking List</h3>
+                <p id="skills-summary">Load data to view rankings.</p>
+              </div>
+              <div class="page-controls">
+                <button class="btn ghost" type="button" id="skills-prev">Prev</button>
+                <span id="skills-page-label">Page 1</span>
+                <button class="btn ghost" type="button" id="skills-next">Next</button>
+              </div>
+            </div>
+
+            <div class="table-wrap">
+              <table class="skills-table" id="skills-table-all">
+                <thead>
+                  <tr>
+                    <th>Rank</th>
+                    <th>Team</th>
+                    <th>Team Name</th>
+                    <th>Type</th>
+                    <th>Score</th>
+                    <th>Event</th>
+                    <th>Season</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <span>Nickson Chen</span>
+        <span>Skills Board</span>
+      </div>
+    </footer>
+
+    <script src="js/scout-config.js"></script>
+    <script src="js/skills.js"></script>
+  </body>
+</html>

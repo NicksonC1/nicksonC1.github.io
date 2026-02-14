@@ -1,0 +1,129 @@
+.skills-hero {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 36px;
+  align-items: start;
+}
+
+.skills-filter-panel::after {
+  pointer-events: none;
+}
+
+.skills-filter-panel .panel-header,
+.skills-filter-panel .skills-form {
+  position: relative;
+  z-index: 1;
+}
+
+.skills-form {
+  display: grid;
+  gap: 16px;
+}
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.kpi-card {
+  min-height: 120px;
+}
+
+.kpi-card h3 {
+  font-size: 0.9rem;
+  margin-bottom: 14px;
+  color: var(--muted);
+}
+
+.kpi-value {
+  font-family: "Orbitron", "Trebuchet MS", sans-serif;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+}
+
+.split-head {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.page-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+}
+
+.table-wrap {
+  margin-top: 16px;
+  overflow-x: auto;
+  border: 1px solid rgba(111, 170, 255, 0.24);
+  border-radius: 14px;
+}
+
+.skills-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 760px;
+}
+
+.skills-table th,
+.skills-table td {
+  text-align: left;
+  padding: 11px 12px;
+  border-bottom: 1px solid rgba(111, 170, 255, 0.12);
+  font-size: 0.9rem;
+}
+
+.skills-table th {
+  color: var(--ink);
+  font-weight: 600;
+  background: rgba(8, 18, 38, 0.66);
+}
+
+.skills-table td {
+  color: var(--muted);
+}
+
+.skills-table tr:last-child td {
+  border-bottom: none;
+}
+
+.rank-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  padding: 2px 8px;
+  border: 1px solid rgba(111, 170, 255, 0.42);
+  border-radius: 999px;
+  color: var(--ink);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.empty-row td {
+  color: var(--muted);
+  font-style: italic;
+}
+
+@media (max-width: 980px) {
+  .skills-hero {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .split-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .page-controls {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+}

@@ -1,0 +1,7 @@
+name = "vex-scout-proxy"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+
+[vars]
+# Comma-separated origins. Use "*" only during setup/testing.
+ALLOWED_ORIGINS = "*"

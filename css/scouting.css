@@ -1,0 +1,275 @@
+.scouting-page .hero {
+  padding-bottom: 70px;
+}
+
+.scout-hero-inner {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 36px;
+  align-items: start;
+}
+
+.scout-search {
+  backdrop-filter: blur(6px);
+}
+
+.scout-search::after {
+  pointer-events: none;
+}
+
+.scout-search .panel-header,
+.scout-search .scout-form {
+  position: relative;
+  z-index: 1;
+}
+
+.scout-form {
+  display: grid;
+  gap: 16px;
+}
+
+.scout-meta .meta-card {
+  min-height: 94px;
+}
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 16px;
+  margin-bottom: 26px;
+}
+
+.season-filter-card {
+  margin-bottom: 22px;
+}
+
+.season-filter-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.season-chip {
+  cursor: pointer;
+}
+
+.season-chip.is-active {
+  border-color: rgba(130, 190, 255, 0.95);
+  color: var(--ink);
+  background: rgba(16, 32, 66, 0.9);
+  box-shadow: 0 0 0 1px rgba(130, 190, 255, 0.28);
+}
+
+.btn-inline {
+  padding: 8px 14px;
+  font-size: 0.85rem;
+}
+
+.kpi-card {
+  min-height: 130px;
+}
+
+.kpi-card h3 {
+  font-size: 0.9rem;
+  margin-bottom: 14px;
+  color: var(--muted);
+}
+
+.kpi-value {
+  font-family: "Orbitron", "Trebuchet MS", sans-serif;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  color: var(--ink);
+}
+
+.scout-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.split-head {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.scout-list {
+  display: grid;
+  gap: 11px;
+  margin-top: 16px;
+}
+
+.scout-list-item {
+  display: grid;
+  grid-template-columns: minmax(132px, 160px) 1fr;
+  gap: 12px;
+  border-bottom: 1px solid rgba(111, 170, 255, 0.14);
+  padding-bottom: 9px;
+}
+
+.scout-list-item span:first-child {
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.scout-list-item span:last-child {
+  font-weight: 500;
+}
+
+.table-wrap {
+  margin-top: 16px;
+  overflow-x: auto;
+  border: 1px solid rgba(111, 170, 255, 0.24);
+  border-radius: 14px;
+}
+
+.scout-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 520px;
+}
+
+.scout-table th,
+.scout-table td {
+  text-align: left;
+  padding: 11px 12px;
+  border-bottom: 1px solid rgba(111, 170, 255, 0.12);
+  font-size: 0.9rem;
+}
+
+.scout-table th {
+  color: var(--ink);
+  font-weight: 600;
+  background: rgba(8, 18, 38, 0.66);
+}
+
+.scout-table td {
+  color: var(--muted);
+}
+
+.scout-table tr:last-child td {
+  border-bottom: none;
+}
+
+.scout-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 11px;
+  border-radius: 999px;
+  border: 1px solid rgba(111, 170, 255, 0.34);
+  background: rgba(6, 12, 28, 0.74);
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+button.scout-chip {
+  font-family: inherit;
+}
+
+.scout-chip strong {
+  color: var(--ink);
+}
+
+.scout-chip.qualifies {
+  border-color: rgba(146, 255, 199, 0.45);
+  color: #bdf8d4;
+}
+
+.scout-chips {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  border: 1px solid rgba(111, 170, 255, 0.42);
+  color: var(--ink);
+}
+
+.badge.good {
+  border-color: rgba(147, 255, 195, 0.6);
+  color: #bdf8d4;
+}
+
+.badge.warn {
+  border-color: rgba(255, 217, 117, 0.5);
+  color: #ffd975;
+}
+
+.badge.dim {
+  border-color: rgba(160, 182, 224, 0.35);
+  color: #a0b5de;
+}
+
+.record-bar {
+  display: flex;
+  border: 1px solid rgba(111, 170, 255, 0.26);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 16px;
+}
+
+.record-bar span {
+  height: 12px;
+  display: block;
+}
+
+.record-bar .wins {
+  background: linear-gradient(120deg, #28be7a, #58d39d);
+}
+
+.record-bar .losses {
+  background: linear-gradient(120deg, #ff6474, #ff8e9a);
+}
+
+.record-bar .ties {
+  background: linear-gradient(120deg, #9aaecd, #c2d2ef);
+}
+
+.favorites-block {
+  margin-top: 24px;
+  padding: 24px;
+  border-radius: 22px;
+  border: 1px solid rgba(111, 170, 255, 0.32);
+  background: rgba(6, 12, 28, 0.72);
+}
+
+.favorites-block h3 {
+  margin-bottom: 8px;
+}
+
+.empty-row td,
+.empty-note {
+  color: var(--muted);
+  font-style: italic;
+}
+
+@media (max-width: 980px) {
+  .scout-hero-inner,
+  .scout-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .split-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .scout-list-item {
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
+}

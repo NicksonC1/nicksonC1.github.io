@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VEX Scout Console | Nickson Chen</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Space+Grotesk:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/scouting.css" />
+  </head>
+  <body class="scouting-page">
+    <div class="cursor-glow" aria-hidden="true"></div>
+    <div class="bg-grid" aria-hidden="true"></div>
+    <div class="bg-orbs" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="logo" href="index.html">NC</a>
+        <nav class="site-nav" aria-label="Scout Navigation">
+          <a href="#search">Search</a>
+          <a href="#results">Results</a>
+          <a href="skills.html">Skills Board</a>
+          <a href="#insights">Insights</a>
+          <a href="#help">API Help</a>
+        </nav>
+        <a class="nav-cta nav-login" href="index.html">Back to site</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero scout-hero" id="search">
+        <div class="container scout-hero-inner">
+          <div class="hero-copy" data-parallax="0.1">
+            <p class="eyebrow">VEX Robotics</p>
+            <h1>Scout Console</h1>
+            <p class="lead">
+              Team lookup with event history, awards, match records, rankings,
+              and skills context. Designed to feel cleaner than the default
+              RobotEvents flow.
+            </p>
+            <div class="hero-actions">
+              <a class="btn primary" href="#results">Jump to results</a>
+              <button class="btn ghost" id="save-favorite" type="button">
+                Save as favorite
+              </button>
+            </div>
+            <div class="hero-meta scout-meta">
+              <div class="meta-card">
+                <span class="label">Mode</span>
+                <span class="value">Team scouting</span>
+              </div>
+              <div class="meta-card">
+                <span class="label">Source</span>
+                <span class="value">RobotEvents API</span>
+              </div>
+              <div class="meta-card">
+                <span class="label">Storage</span>
+                <span class="value">Token stored server-side</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-panel scout-search" data-parallax="0.16">
+            <div class="panel-header">
+              <span class="panel-title">Team search</span>
+              <span class="panel-dot"></span>
+            </div>
+            <form id="scout-form" class="scout-form" autocomplete="off">
+              <label class="field" for="team-number">
+                <span>Team number</span>
+                <input
+                  id="team-number"
+                  name="team-number"
+                  type="text"
+                  placeholder="e.g. 169A"
+                  required
+                />
+              </label>
+
+              <div class="controls-grid">
+                <label class="field" for="program-id">
+                  <span>Program</span>
+                  <select id="program-id" name="program-id">
+                    <option value="1">V5RC</option>
+                    <option value="41">VIQRC</option>
+                    <option value="4">VURC</option>
+                    <option value="">All programs</option>
+                  </select>
+                </label>
+                <label class="field" for="season-id">
+                  <span>Season ID (optional)</span>
+                  <input
+                    id="season-id"
+                    name="season-id"
+                    type="number"
+                    min="1"
+                    placeholder="e.g. 190"
+                  />
+                </label>
+              </div>
+
+              <p class="field-note">
+                Secure proxy mode is enabled. Set your proxy URL in
+                <code>js/scout-config.js</code>.
+              </p>
+
+              <div class="utility-actions">
+                <button class="btn primary" id="run-search" type="submit">
+                  Search team
+                </button>
+                <button class="btn ghost" id="load-demo" type="button">
+                  Load demo data
+                </button>
+                <button class="btn ghost" id="clear-results" type="button">
+                  Clear
+                </button>
+              </div>
+
+              <p class="status" id="search-status" role="status"></p>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="results">
+        <div class="container">
+          <div class="section-head" data-parallax="0.05">
+            <h2>Scouting Results</h2>
+            <p id="result-summary">Search a team to populate scouting data.</p>
+          </div>
+
+          <div class="kpi-grid" id="kpi-grid">
+            <article class="card kpi-card" data-key="events">
+              <h3>Events</h3>
+              <p class="kpi-value">0</p>
+            </article>
+            <article class="card kpi-card" data-key="awards">
+              <h3>Awards</h3>
+              <p class="kpi-value">0</p>
+            </article>
+            <article class="card kpi-card" data-key="record">
+              <h3>Match Record</h3>
+              <p class="kpi-value">0-0-0</p>
+            </article>
+            <article class="card kpi-card" data-key="skills-rank">
+              <h3>Best Skills Rank</h3>
+              <p class="kpi-value">-</p>
+            </article>
+          </div>
+
+          <article class="utility-card season-filter-card" data-parallax="0.03">
+            <div class="utility-head split-head">
+              <div>
+                <h3>Season Split</h3>
+                <p>Separate team data by season after loading all history.</p>
+              </div>
+              <a class="btn ghost btn-inline" href="skills.html">Open skills board</a>
+            </div>
+            <div id="season-filter-list" class="season-filter-list"></div>
+          </article>
+
+          <div class="scout-grid">
+            <article class="utility-card" data-parallax="0.02">
+              <div class="utility-head">
+                <h3>Team Profile</h3>
+                <p>Core details and qualification signals.</p>
+              </div>
+              <div class="scout-list" id="team-profile"></div>
+            </article>
+
+            <article class="utility-card" data-parallax="0.03">
+              <div class="utility-head split-head">
+                <div>
+                  <h3>Events Attended</h3>
+                  <p>Chronological event history for the selected team.</p>
+                </div>
+                <label class="toggle">
+                  <input id="events-qualified-only" type="checkbox" />
+                  <span>Worlds-signal only</span>
+                </label>
+              </div>
+              <div class="table-wrap">
+                <table class="scout-table" id="events-table">
+                  <thead>
+                    <tr>
+                      <th>Event</th>
+                      <th>Date</th>
+                      <th>Location</th>
+                      <th>Signal</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </article>
+
+            <article class="utility-card" data-parallax="0.04">
+              <div class="utility-head split-head">
+                <div>
+                  <h3>Awards</h3>
+                  <p>Awards for this team in the selected season scope.</p>
+                </div>
+                <label class="toggle">
+                  <input id="awards-qualified-only" type="checkbox" />
+                  <span>Worlds-signal only</span>
+                </label>
+              </div>
+              <ul class="scout-chips" id="awards-list"></ul>
+            </article>
+
+            <article class="utility-card" data-parallax="0.05">
+              <div class="utility-head">
+                <h3>Matches (W/L/T)</h3>
+                <p>Calculated from matches where alliance scores are available.</p>
+              </div>
+              <div class="record-bar" id="record-bar" aria-hidden="true">
+                <span class="wins"></span>
+                <span class="losses"></span>
+                <span class="ties"></span>
+              </div>
+              <div class="table-wrap">
+                <table class="scout-table" id="matches-table">
+                  <thead>
+                    <tr>
+                      <th>Event</th>
+                      <th>Match</th>
+                      <th>Alliance</th>
+                      <th>Score</th>
+                      <th>Result</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </article>
+
+            <article class="utility-card" data-parallax="0.03">
+              <div class="utility-head">
+                <h3>Rankings</h3>
+                <p>Event rankings and tiebreak values if available.</p>
+              </div>
+              <div class="table-wrap">
+                <table class="scout-table" id="rankings-table">
+                  <thead>
+                    <tr>
+                      <th>Event</th>
+                      <th>Rank</th>
+                      <th>W-L-T</th>
+                      <th>Score</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </article>
+
+            <article class="utility-card" id="insights" data-parallax="0.02">
+              <div class="utility-head">
+                <h3>Skills + Insights</h3>
+                <p>Best scores and scouting notes generated from team data.</p>
+              </div>
+              <div class="table-wrap">
+                <table class="scout-table" id="skills-table">
+                  <thead>
+                    <tr>
+                      <th>Type</th>
+                      <th>Score</th>
+                      <th>Rank</th>
+                      <th>Event</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+              <ul class="now-list" id="insights-list"></ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="help">
+        <div class="container">
+          <div class="cta-card" data-parallax="0.05">
+            <div>
+              <h2>Secure Setup</h2>
+              <p>
+                Deploy the proxy and store your RobotEvents token as a server-side
+                secret. End users never see the token.
+              </p>
+            </div>
+            <a
+              class="btn primary"
+              href="proxy/README.md"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Open proxy setup guide</a
+            >
+            <a
+              class="btn ghost"
+              href="https://www.robotevents.com/api/v2"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Open RobotEvents API page</a
+            >
+          </div>
+          <div class="favorites-block">
+            <h3>Saved Favorites</h3>
+            <p class="field-note">Stored in your browser on this device.</p>
+            <ul id="favorites-list" class="scout-chips"></ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <span>Nickson Chen</span>
+        <span>Scout Console</span>
+      </div>
+    </footer>
+
+    <script src="js/scout-config.js"></script>
+    <script src="js/scouting.js"></script>
+  </body>
+</html>
